@@ -48,7 +48,7 @@ internal fun File.copyToDir(parentDir: File): File {
 
 fun File.getAsBitmap(shouldAdjustRotation: Boolean = false): Bitmap {
     val options: BitmapFactory.Options = BitmapFactory.Options()
-    options.inSampleSize = 1
+    options.inSampleSize = 2
     val bitmap = BitmapFactory.decodeFile(this.absolutePath, options)
     return if (shouldAdjustRotation) {
         val exif = ExifInterface(this.absolutePath)
