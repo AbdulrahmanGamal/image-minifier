@@ -47,7 +47,9 @@ internal fun File.copyToDir(parentDir: File): File {
 }
 
 fun File.getAsBitmap(shouldAdjustRotation: Boolean = false): Bitmap {
-    val bitmap = BitmapFactory.decodeFile(this.absolutePath)
+    val options: BitmapFactory.Options = BitmapFactory.Options()
+    options.inSampleSize = 1
+    val bitmap = BitmapFactory.decodeFile(this.absolutePath, options)
     return if (shouldAdjustRotation) {
         val exif = ExifInterface(this.absolutePath)
         val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0)
